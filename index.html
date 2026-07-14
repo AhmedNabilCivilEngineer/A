@@ -34,10 +34,8 @@
         .active-users-box { flex: 1; display: flex; flex-direction: column; margin-bottom: 15px; }
         .active-users-box h4 { font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 1px; }
         .users-list { display: flex; flex-direction: column; gap: 6px; }
-        .logout-btn, .clear-btn { padding: 10px; background: transparent; border: 1px solid var(--error-red); color: var(--error-red); border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; margin-bottom: 10px; width: 100%; }
-        .clear-btn { border-color: var(--text-muted); color: var(--text-muted); }
+        .logout-btn { padding: 10px; background: transparent; border: 1px solid var(--error-red); color: var(--error-red); border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; margin-bottom: 10px; width: 100%; }
         .logout-btn:hover { background: var(--error-red); color: #fff; }
-        .clear-btn:hover { border-color: #fff; color: #fff; }
         .chat-area { display: flex; flex-direction: column; background: #161616; min-height: 0; }
         .chat-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); background: var(--card-bg); font-weight: bold; display: flex; justify-content: space-between; align-items: center;}
         .status-dot { width: 8px; height: 8px; background: var(--success-green); border-radius: 50%; display: inline-block; margin-right: 5px; }
@@ -101,7 +99,6 @@
                 <h4>Online Personnel</h4>
                 <div class="users-list" id="presenceList"></div>
             </div>
-            <button class="clear-btn" onclick="clearAllChat()">Clear All Chat</button>
             <button class="logout-btn" onclick="handleLogout()">Disconnect</button>
         </aside>
         <main class="chat-area">
@@ -130,13 +127,6 @@
             let hist = JSON.parse(localStorage.getItem('bct_hist') || '[]');
             hist.push(m);
             localStorage.setItem('bct_hist', JSON.stringify(hist));
-        }
-
-        function clearAllChat() {
-            if(confirm("Clear all messages?")) {
-                localStorage.removeItem('bct_hist');
-                document.getElementById('messagesWindow').innerHTML = ""; // Clears UI immediately[span_2](start_span)[span_2](end_span)
-            }
         }
 
         function delMsg(id, broadcast = true) {
