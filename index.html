@@ -1,117 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BAYAN Company (BCT) - Local Portal</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمات هندسية وتخطيطية متقدمة</title>
     <style>
-        :root { --primary-gold: #b38f4f; --dark-gold: #8e6f37; --dark-bg: #111111; --card-bg: #1a1a1a; --text-light: #ffffff; --text-muted: #aaaaaa; --border-color: #333333; --success-green: #2ecc71; --error-red: #e74c3c; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--dark-bg); color: var(--text-light); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 10px; overflow: hidden; }
-        .portal-container { background-color: var(--card-bg); width: 100%; max-width: 420px; padding: 30px 20px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
-        .dashboard-container { display: none; background-color: var(--card-bg); width: 100%; max-width: 900px; height: 85vh; border-radius: 12px; border: 1px solid var(--border-color); grid-template-columns: 260px 1fr; overflow: hidden; }
-        .logo-area { margin-bottom: 20px; }
-        .logo-icon { font-size: 54px; font-weight: bold; color: var(--primary-gold); margin-bottom: 5px; font-family: 'Times New Roman', serif; }
-        .company-name { font-size: 22px; font-weight: 700; text-transform: uppercase; }
-        .input-group { margin-bottom: 20px; text-align: left; }
-        .input-group label { display: block; font-size: 11px; text-transform: uppercase; color: var(--primary-gold); margin-bottom: 8px; }
-        .input-group select, .input-group input { width: 100%; padding: 12px; background-color: #222; border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 16px; }
-        .login-btn { width: 100%; padding: 14px; background-color: var(--primary-gold); border: none; border-radius: 6px; color: #111; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        #message-box { margin-top: 15px; padding: 10px; border-radius: 6px; font-size: 14px; display: none; }
-        .error { background-color: rgba(231, 76, 60, 0.15); color: var(--error-red); border: 1px solid var(--error-red); }
-        .sidebar { background-color: #111; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 20px; }
-        .chat-area { display: flex; flex-direction: column; background: #161616; flex: 1; }
-        .messages-window { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-        .msg { max-width: 85%; padding: 10px 14px; border-radius: 8px; font-size: 14px; word-break: break-word; }
-        .msg.received { background: #222; align-self: flex-start; border: 1px solid var(--border-color); }
-        .msg.sent { background: var(--primary-gold); color: #111; align-self: flex-end; }
-        .input-bar { padding: 15px; background: var(--card-bg); border-top: 1px solid var(--border-color); display: flex; gap: 8px; }
-        .input-bar input { flex: 1; padding: 12px; background: #111; border: 1px solid var(--border-color); border-radius: 6px; color: #fff; }
-        .send-btn { padding: 0 15px; background: var(--primary-gold); border: none; border-radius: 6px; color: #111; font-weight: bold; cursor: pointer; }
-        .logout-btn { padding: 10px; background: transparent; border: 1px solid var(--error-red); color: var(--error-red); border-radius: 6px; cursor: pointer; width: 100%; margin-top: auto;}
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #00509d;
+            --accent-color: #ffb703;
+            --text-color: #2b2d42;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --border-color: #e9ecef;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .content-section {
+            padding: 40px 30px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .service-card span.software {
+            font-size: 0.85rem;
+            background-color: #eef4fb;
+            color: var(--secondary-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            direction: ltr;
+        }
+
+        .why-us {
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .why-us h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .why-us ul {
+            list-style: none;
+        }
+
+        .why-us li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 15px;
+        }
+
+        .why-us li::before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .contact-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 6px;
+            color: var(--white);
+            text-decoration: none;
+            transition: background 0.3s ease;
+            direction: ltr;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.6rem;
+            }
+            .content-section {
+                padding: 20px 15px;
+            }
+            .contact-info {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="portal-container" id="loginScreen">
-        <div class="logo-area"><div class="logo-icon">B</div><div class="company-name">Bayan Company</div></div>
-        <form onsubmit="handleLogin(event)">
-            <div class="input-group">
-                <label>Select Identity</label>
-                <select id="portal-id" required>
-                    <option value="" disabled selected>-- Select Member --</option>
-                    <option value="Eng. Ahmed Nabil">Eng. Ahmed Nabil</option>
-                    <option value="Eng. Youssef Nabil">Eng. Youssef Nabil</option>
-                    <option value="Eng. Noha Alhaddad">Eng. Noha Alhaddad</option>
-                    <option value="Eng. Nabil Hassan">Eng. Nabil Hassan</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label>Security Password</label>
-                <input type="password" id="password" required>
-            </div>
-            <button type="submit" class="login-btn">Secure Local Login</button>
-        </form>
-        <div id="message-box"></div>
-    </div>
 
-    <div class="dashboard-container" id="dashboardScreen">
-        <aside class="sidebar">
-            <div style="font-weight:bold; color:var(--primary-gold); margin-bottom:20px;">BCT LOCAL PORTAL</div>
-            <button class="logout-btn" onclick="location.reload()">Disconnect</button>
-        </aside>
-        <main class="chat-area">
-            <div class="messages-window" id="messagesWindow"></div>
-            <form class="input-bar" onsubmit="sendMessage(event)">
-                <input type="text" id="typeBox" placeholder="Type a message..." autocomplete="off">
-                <button type="submit" class="send-btn">Send</button>
-            </form>
-        </main>
-    </div>
+    <div class="container">
+        <header>
+            <h1>حول رؤية مشروعك إلى واقع ملموس</h1>
+            <p>نقدم لك إدارة مدعومة بالبيانات، وتصميمات إنشائية متطورة، وتحليلات جيوتقنية دقيقة لضمان تسليم مشروعك في الموعد المحدد، وضمن الميزانية، ووفق أعلى معايير الجودة.</p>
+        </header>
 
-    <script>
-        // Local Network Configuration
-        const LOCAL_BROKER_IP = "192.168.8.147"; 
-        const LOCAL_BROKER_PORT = "9001";
-        
-        const userCredentials = { 'Eng. Ahmed Nabil': 'Bayan2026', 'Eng. Youssef Nabil': 'Bayan2026', 'Eng. Noha Alhaddad': 'Bayan2026', 'Eng. Nabil Hassan': 'Bayan2026' };
-        let currentActiveUser = "", client = null;
-
-        function handleLogin(event) {
-            event.preventDefault();
-            const id = document.getElementById('portal-id').value;
-            const pass = document.getElementById('password').value;
+        <div class="content-section">
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 30px;">خدماتنا الأساسية</h2>
             
-            if (userCredentials[id] === pass) {
-                // Connection attempt to your local IP
-                client = mqtt.connect(`ws://${LOCAL_BROKER_IP}:${LOCAL_BROKER_PORT}`);
-                
-                client.on('connect', () => {
-                    currentActiveUser = id;
-                    document.getElementById('loginScreen').style.display = 'none';
-                    document.getElementById('dashboardScreen').style.display = 'grid';
-                });
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>تخطيط وإدارة المشاريع <span class="software">Primavera P6</span></h3>
+                    <p>إعداد الجداول الزمنية المرجعية (Baseline Schedules)، تحميل التكاليف والموارد (Cost & Resource Loading)، تحليل المسار الحرج (CPM)، وإدارة القيمة المكتسبة (EVM) لضمان التحكم الكامل في زمنيّات المشروع.</p>
+                </div>
 
-                client.on('error', (err) => {
-                    showError("Cannot connect to Local Network (192.168.8.147). Ensure you are connected to the correct Wi-Fi.");
-                });
-            } else {
-                showError("Invalid Credentials.");
-            }
-        }
+                <div class="service-card">
+                    <h3>التحكم المالي وتدفقات السيولة <span class="software">MS Excel</span></h3>
+                    <p>نماذج مالية مخصصة، رسم المنحنيات التراكمية (S-Curves)، متابعة المستخلصات الدورية، وتوقعات دقيقة للتدفقات النقدية (Cash Flow) للحفاظ على الاستقرار المالي للمشروع.</p>
+                </div>
 
-        function showError(msg) {
-            const box = document.getElementById('message-box');
-            box.className = "error"; box.innerText = msg; box.style.display = "block";
-        }
+                <div class="service-card">
+                    <h3>نمذجة معلومات البناء <span class="software">Revit Structure</span></h3>
+                    <p>إنشاء نماذج إنشائية ثلاثية الأبعاد عالية الدقة، كشف التعارضات (Clash Detection)، تفاصيل حديد التسليح (Rebar Detailing)، وحصر الكميات بدقة لضمان سهولة التنفيذ في الموقع.</p>
+                </div>
 
-        function sendMessage(event) {
-            event.preventDefault();
-            const input = document.getElementById('typeBox');
-            if (input.value.trim() === "" || !client) return;
-            client.publish("bayan/local", JSON.stringify({user: currentActiveUser, msg: input.value}));
-            input.value = "";
-        }
-    </script>
+                <div class="service-card">
+                    <h3>التحليل الجيوتقني وهبوط التربة <span class="software">PLAXIS 3D</span></h3>
+                    <p>تحليل متقدم باستخدام العناصر المنتهية (3D Finite Element) للأساسات العميقة، ثبات الحفريات، التفاعل بين التربة والمنشأ، وتوقع معدلات هبوط التربة تحت الأحمال المختلفة.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>التحليل والتصميم الإنشائي <span class="software">Autodesk Robot</span></h3>
+                    <p>تحليل إنشائي شامل (استاتيكي، ديناميكي، أحمال الرياح والزلازل) للنماذج ثلاثية الأبعاد لضمان مطابقة الكودات، تحسين استهلاك المواد، وتحقيق أعلى مستويات الأمان.</p>
+                </div>
+            </div>
+
+            <div class="why-us">
+                <h2>لماذا تختار التعامل معنا؟</h2>
+                <ul>
+                    <li><strong>تكامل كامل للخدمات:</strong> ربط مباشر بين التحليل الجيوتقني والإنشائي ونماذج الـ BIM والجداول الزمنية.</li>
+                    <li><strong>توفير الوقت والتكلفة:</strong> تصميمات محسنة تمنع إعادة العمل في الموقع وتتجنب التأخيرات المكلفة.</li>
+                    <li><strong>التزام تام بالمعايير:</strong> مطابقة كاملة للكودات المحلية والدولية للبناء.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>جاهز للارتقاء بمشروعك القادم؟</h2>
+            <p>تواصل معنا اليوم للحصول على استشارة فنية</p>
+            
+            <div class="contact-info">
+                <a href="tel:+201021076604" class="contact-item">📱 +201021076604</a>
+                <a href="https://wa.me/201021076604" target="_blank" class="contact-item">💬 WhatsApp</a>
+                <a href="mailto:mypc1239@outlook.com" class="contact-item">✉️ mypc1239@outlook.com</a>
+                <a href="https://www.facebook.com/share/1F1W4HCCoG/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" class="contact-item">📘 Facebook</a>
+                <a href="https://ahmednabilcivilengineer.github.io/Construction/" target="_blank" rel="noopener noreferrer" class="contact-item">🌐 Website</a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
