@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="PfJKyJ6HOko9pkMdExjWrLIeudoK-QtUWcvTG6QOWw4" />
-    <title>خدمات هندسية وتخطيطية متقدمة</title>
+    <title>Eng. Ahmed Nabil | Advanced Engineering & Project Controls Services</title>
     <style>
         :root {
             --primary-color: #003366;
@@ -14,6 +14,7 @@
             --light-bg: #f8f9fa;
             --white: #ffffff;
             --border-color: #e9ecef;
+            --gray: #64748b;
         }
 
         * {
@@ -48,15 +49,34 @@
 
         header h1 {
             font-size: 2.2rem;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-weight: 700;
         }
 
-        header p {
+        header p.subtitle {
             font-size: 1.1rem;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 15px auto;
             opacity: 0.95;
+        }
+
+        .credentials-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .badge {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .content-section {
@@ -139,11 +159,10 @@
             color: var(--white);
             padding: 40px 30px;
             text-align: center;
-            border-radius: 0 0 12px 12px;
         }
 
         .contact-section h2 {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-size: 1.6rem;
         }
 
@@ -172,6 +191,15 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        footer {
+            background-color: #0a192f;
+            color: #94a3b8;
+            text-align: center;
+            padding: 20px 30px;
+            font-size: 0.85rem;
+            border-radius: 0 0 12px 12px;
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 1.6rem;
@@ -189,12 +217,19 @@
 
     <div class="container">
         <header>
-            <h1>حول رؤية مشروعك إلى واقع ملموس</h1>
-            <p>نقدم لك إدارة مدعومة بالبيانات، وتصميمات إنشائية متطورة، وتحليلات جيوتقنية دقيقة لضمان تسليم مشروعك في الموعد المحدد، وضمن الميزانية، ووفق أعلى معايير الجودة.</p>
+            <h1>المهندس أحمد نبيل | Eng. Ahmed Nabil</h1>
+            <p class="subtitle">أقدم لك إدارة مدعومة بالبيانات، وتصميمات إنشائية متطورة، وتحليلات جيوتقنية دقيقة لضمان تنفيذ مشروعك في الموعد المحدد، وضمن الميزانية، ووفق أعلى معايير الجودة.</p>
+            
+            <div class="credentials-badges">
+                <span class="badge">GMICE (ICE, UK) Registered</span>
+                <span class="badge">نقابة المهندسين المصرية</span>
+                <span class="badge">Danish B.Eng. Equivalent</span>
+                <span class="badge">الإسكندرية، مصر</span>
+            </div>
         </header>
 
         <div class="content-section">
-            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 30px;">خدماتنا الأساسية</h2>
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 30px;">الخدمات الهندسية المقدمة</h2>
             
             <div class="services-grid">
                 <div class="service-card">
@@ -214,7 +249,7 @@
 
                 <div class="service-card">
                     <h3>التحليل الجيوتقني وهبوط التربة <span class="software">PLAXIS 3D</span></h3>
-                    <p>تحليل متقدم باستخدام العناصر المنتهية (3D Finite Element) للأساسات العميقة، ثبات الحفريات، التفاعل بين التربة والمنشأ، وتوقع معدلات هبوط التربة تحت الأحمال المختلفة.</p>
+                    <p>تحليل متتقدم باستخدام العناصر المنتهية (3D Finite Element) للأساسات العميقة، ثبات الحفريات، التفاعل بين التربة والمنشأ، وتوقع معدلات هبوط التربة تحت الأحمال المختلفة.</p>
                 </div>
 
                 <div class="service-card">
@@ -224,7 +259,7 @@
             </div>
 
             <div class="why-us">
-                <h2>لماذا تختار التعامل معنا؟</h2>
+                <h2>لماذا تختار العمل معي؟</h2>
                 <ul>
                     <li><strong>تكامل كامل للخدمات:</strong> ربط مباشر بين التحليل الجيوتقني والإنشائي ونماذج الـ BIM والجداول الزمنية.</li>
                     <li><strong>توفير الوقت والتكلفة:</strong> تصميمات محسنة تمنع إعادة العمل في الموقع وتتجنب التأخيرات المكلفة.</li>
@@ -235,16 +270,21 @@
 
         <div class="contact-section">
             <h2>جاهز للارتقاء بمشروعك القادم؟</h2>
-            <p>تواصل معنا اليوم للحصول على استشارة فنية</p>
+            <p>تواصل معي اليوم للحصول على دعم وخبرة فنية متخصصة</p>
             
             <div class="contact-info">
                 <a href="tel:+201021076604" class="contact-item">📱 +201021076604</a>
                 <a href="https://wa.me/201021076604" target="_blank" class="contact-item">💬 WhatsApp</a>
                 <a href="mailto:mypc1239@outlook.com" class="contact-item">✉️ mypc1239@outlook.com</a>
                 <a href="https://www.facebook.com/share/1F1W4HCCoG/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" class="contact-item">📘 Facebook</a>
-                <a href="https://ahmednabilcivilengineer.github.io/Construction/" target="_blank" rel="noopener noreferrer" class="contact-item">🌐 Website</a>
+                <a href="https://ahmednabilcivilengineer.github.io/Construction/" target="_blank" rel="noopener noreferrer" class="contact-item">🌐 Portfolio</a>
             </div>
         </div>
+
+        <footer>
+            <p>© 2026 Eng. Ahmed Nabil Mahmoud Hassan Youssef, GMICE. جميع الحقوق محفوظة.</p>
+            <p style="font-size:0.75rem; color: #64748b; margin-top: 5px;">ملاحظة: تقدم جميع الخدمات الهندسية لأغراض التصميم والتنفيذ وإدارة المشاريع، وتخضع اعتماديات ورخص المكاتب الاستشارية الرسمية للجهات المعتمدة.</p>
+        </footer>
     </div>
 
 </body>
